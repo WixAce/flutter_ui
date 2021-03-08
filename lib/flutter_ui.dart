@@ -1,7 +1,24 @@
 library flutter_ui;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+import 'package:flutter_ui/save_utils.dart';
+
+const String _isFirstKey = "isFirst";
+bool isFirst = false;
+
+Future<bool> checkIsFirst() async {
+  var result = await SaveUtils.getString(_isFirstKey) ?? "true";
+  isFirst = result == "true";
+  return isFirst;
+}
+
+Future<bool> agreePrivacy() async {
+  await SaveUtils.setString(_isFirstKey, "false");
+  isFirst = false;
+  return isFirst;
+}
+
+Future<bool> resetIsFirst() async {
+  await SaveUtils.setString(_isFirstKey, "true");
+  isFirst = true;
+  return isFirst;
 }
