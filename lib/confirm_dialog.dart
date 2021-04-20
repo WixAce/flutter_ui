@@ -46,7 +46,7 @@ class _ConfirmDialogState extends State<ConfirmDialog> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              RaisedButton(
+              /*RaisedButton(
                 child: SizedBox(
                   width: 60.0,
                   child: Text(
@@ -65,27 +65,34 @@ class _ConfirmDialogState extends State<ConfirmDialog> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100.0),
                 ),
-              ),
-              RaisedButton(
+              ),*/
+              ElevatedButton(
                 child: SizedBox(
                   width: 60.0,
                   child: Text(
                     widget.agreeText,
                     style: TextStyle(
                       fontSize: 14,
-                      color: const Color(0xffffffff),
+                      color: Colors.redAccent,
                       fontWeight: FontWeight.w400,
                       height: 1.25,
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ),
-                color: const Color(0xff4e8cf6),
-                onPressed: () => {widget.action.call()},
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100.0),
+                onPressed: () {
+                  widget.action.call();
+                },
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                  shape: MaterialStateProperty.all<OutlinedBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100.0),
+                    ),
+                  ),
                 ),
-              ),
+              )
             ],
           ),
         ]);
