@@ -6,8 +6,12 @@ class ConfirmDialog extends StatefulWidget {
   Function action;
   Function cancel;
   Function onLinkTap;
-  ConfirmDialog(this.title, this.content, this.action, this.cancel,
-      {this.onLinkTap, Key key, this.agreeText = "", this.cancelText = ""})
+  ConfirmDialog(this.title, this.content, this.action,
+      {this.cancel,
+      this.onLinkTap,
+      Key key,
+      this.agreeText = "",
+      this.cancelText = ""})
       : super(key: key);
 
   @override
@@ -46,26 +50,34 @@ class _ConfirmDialogState extends State<ConfirmDialog> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              /*RaisedButton(
-                child: SizedBox(
-                  width: 60.0,
-                  child: Text(
-                    widget.cancelText,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: const Color(0xffffffff),
-                      fontWeight: FontWeight.w400,
-                      height: 1.25,
+              if (widget.cancel != null)
+                ElevatedButton(
+                  child: SizedBox(
+                    width: 60.0,
+                    child: Text(
+                      widget.cancelText,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.redAccent,
+                        fontWeight: FontWeight.w400,
+                        height: 1.25,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
+                  ),
+                  onPressed: () {
+                    widget.cancel.call();
+                  },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                    shape: MaterialStateProperty.all<OutlinedBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100.0),
+                      ),
+                    ),
                   ),
                 ),
-                color: const Color(0xff4e8cf6),
-                onPressed: () => {widget.cancel.call()},
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100.0),
-                ),
-              ),*/
               ElevatedButton(
                 child: SizedBox(
                   width: 60.0,
